@@ -1,3 +1,7 @@
+@import './bootswatch/_variables.scss';
+@import 'bootstrap/scss/bootstrap.scss';
+@import './bootswatch/_bootswatch.scss';
+
 .red-text {
     color: red;
 }
