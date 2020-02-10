@@ -4,6 +4,11 @@
     margin: 10px auto;
     display: flex;
     justify-content: space-between;
+    &__container {
+        max-width: 1200px;
+        margin: 0px auto;
+        justify-content: space-between;
+    }
     &__img {
         width: 300px;
     }
@@ -19,7 +24,7 @@
 .rhap_container {
     position: relative;
     margin: 100px 20px;
-    height: 55px;
+    height: 105px;
 }
 
 .rhap_play-pause-button {
@@ -46,6 +51,28 @@
 
 }
 
-.rhap_additional-controls {
-    display: none;
+.rhap_volume-controls {
+    margin-right: 55px;
 }
+
+.rhap_progress-indicator {
+    background: #18BC9C;
+}
+
+.options {
+    &__container {
+        width: 48%;
+        margin: 10px;
+    }
+}
+
+.description__container {
+    width: 48%;
+    margin: 10px;
+}
+
+.main__container {
+    display: flex;
+    justify-content: space-between;
+}
+
