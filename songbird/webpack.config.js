@@ -39,7 +39,7 @@ const config = {
         ],
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        test: /\.(woff|woff2|eot|ttf|otf|mp3)$/,
         use: 'file-loader',
       },
       {

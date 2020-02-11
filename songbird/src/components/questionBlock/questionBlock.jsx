@@ -4,6 +4,8 @@ import bird from './images/bird-guess.jpg';
 import questions from '../../data/quiz.json';
 import isEmpty from '../../utils/isEmpty.js';
 import M from 'materialize-css';
+import correctNotification from '../../assets/audio/correct-answer.mp3';;
+import wrongNotification from '../../assets/audio/wrong-answer.mp3';
 // import load from '../../utils/load';
 
 // const Player = () => (
@@ -81,8 +83,10 @@ class QuestionBlock extends Component {
   handleOptionClick = e => {
        console.log(this.state.answer);
 if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
+    document.getElementById('correct-sound').play();
     this.correctAnswer();
 } else {
+    document.getElementById('wrong-sound').play();
     this.wrongAnswer();
 }
   };
@@ -135,7 +139,8 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
                 
             <p>test</p>
             </div> */}
-
+            <audio id="correct-sound" src={correctNotification}></audio>
+            <audio id="wrong-sound" src={wrongNotification}></audio>
             <p>{currentQuestion.question}</p>
             <AudioPlayer
               autoPlay={false}
