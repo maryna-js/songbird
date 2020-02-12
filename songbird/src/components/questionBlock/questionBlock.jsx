@@ -6,6 +6,7 @@ import isEmpty from '../../utils/isEmpty.js';
 import M from 'materialize-css';
 import correctNotification from '../../assets/audio/correct-answer.mp3';;
 import wrongNotification from '../../assets/audio/wrong-answer.mp3';
+import buttonSound from '../../assets/audio/button-sound.mp3';
 // import load from '../../utils/load';
 
 // const Player = () => (
@@ -35,6 +36,8 @@ class QuestionBlock extends Component {
       hints: 5,
       fiftyFifty: 2,
       usedFiftyFifty: false,
+      nextButtonDisabled: false,
+      previousButtonDisabled: true,
     };
     // this.loadData();
   }
@@ -75,6 +78,7 @@ class QuestionBlock extends Component {
         currentQuestion,
         nextQuestion,
         previousQuestion,
+        numberOfQuestions: questions.length,
         answer,
       });
     }
@@ -83,12 +87,57 @@ class QuestionBlock extends Component {
   handleOptionClick = e => {
        console.log(this.state.answer);
 if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
-    document.getElementById('correct-sound').play();
+    setTimeout(() => {
+        document.getElementById('correct-sound').play();
+    });
     this.correctAnswer();
 } else {
-    document.getElementById('wrong-sound').play();
+    setTimeout(() => {
+        document.getElementById('wrong-sound').play();
+    });
+    
     this.wrongAnswer();
 }
+  };
+
+  handleNextButtonClick = () => {
+      this.playButtonSound();
+      if (this.state.nextQuestion !== undefined) {
+        this.setState(prevState => ({
+            currentQuestionIndex: prevState.currentQuestionIndex + 1
+        }), () => {
+            this.displayQuestions(this.state.state, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
+        });
+      }
+  };
+
+  handlePreviousButtonClick = () => {
+    this.playButtonSound();
+    if (this.state.previousQuestion !== undefined) {
+      this.setState(prevState => ({
+          currentQuestionIndex: prevState.currentQuestionIndex - 1
+      }), () => {
+          this.displayQuestions(this.state.state, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
+      });
+    }
+};
+
+  handleButtonClick = (e) => {
+      switch (e.target.id) {
+        case 'next-button': 
+            this.handleNextButtonClick();
+            break;
+        case 'previous-button': 
+            this.handlePreviousButtonClick();
+            break;
+        default:
+              break;
+
+      }
+  };
+
+  playButtonSound = () => {
+    document.getElementById('button-sound').play();
   };
   // add styles for M, working but white
 
@@ -104,7 +153,12 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
         currentQuestionIndex: prevState.currentQuestionIndex + 1,
         numberOfAnsweredQuetions: prevState.numberOfAnsweredQuetions +1
       }), () => {
-        this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
+        if (this.state.nextQuestion === undefined) {
+            this.endGame();
+        } else {
+            this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
+        }
+        
       });
   }
 
@@ -120,14 +174,35 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
       currentQuestionIndex: prevState.currentQuestionIndex + 1,
       numberOfAnsweredQuetions: prevState.numberOfAnsweredQuetions + 1
     })
-    // , () => {
-    //     this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
-    //   }
+    , () => {
+        if (this.state.nextQuestion === undefined) {
+            this.endGame();
+        } else {
+            this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
+        }
+        
+      }
       );
 }
 
+endGame = () => {
+    alert('Игра окончена');
+    const { state } = this;
+    const playerStats = {
+        score: state.score,
+        numberOfQuestions: state.numberOfQuestions,
+        numberOfAnsweredQuetions: state.numberOfAnsweredQuetions,
+        correctAnswers: state.correctAnswers,
+        wrongAnswers: state.wrongAnswers
+    };
+    console.log(playerStats);
+    setTimeout(() => {
+    this.props.history.push('/summary', playerStats);
+    }, 1000);
+};
+
   render() {
-    const { currentQuestion } = this.state;
+    const { currentQuestion, correctAnswers, numberOfQuestions } = this.state;
     return (
       <>
         <div className="question__container">
@@ -141,6 +216,7 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
             </div> */}
             <audio id="correct-sound" src={correctNotification}></audio>
             <audio id="wrong-sound" src={wrongNotification}></audio>
+            <audio id="button-sound" src={buttonSound}></audio>
             <p>{currentQuestion.question}</p>
             <AudioPlayer
               autoPlay={false}
@@ -154,7 +230,7 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
                 <p>Выберите ответ</p>
                 <div className="card__lifeline">
                   <p>
-                    <span>2 of 15</span>
+        <span>{correctAnswers + 1 }of {numberOfQuestions}</span>
                   </p>
                 </div>
               </div>
@@ -183,9 +259,8 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
             </div>
           </div>
           <div className="button__container">
-            <button className="btn btn-secondary">Previous</button>
-            <button className="btn btn-success">Next</button>
-            <button className="btn btn-danger">Quit</button>
+            <button id="previous-button" className="btn btn-secondary" onClick={this.handleButtonClick}>Previous</button>
+            <button id="next-button" className="btn btn-success" onClick={this.handleButtonClick}>Next</button>
           </div>
         </div>
       </>

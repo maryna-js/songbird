@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter as Router, Route } from 'react-router-dom';
 // import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 // import { hot } from 'react-hot-loader';
@@ -11,13 +12,29 @@ import './index.scss';
 import '@babel/polyfill';
 import Header from './components/header/header';
 import QuestionBlock from './components/questionBlock/questionBlock';
+import Summary from './components/summary/Summary.jsx';
 
 function App() {
   return (
-    <>
+    // <>
+    // <Header />
+    // <QuestionBlock />
+    // <Summary />
+    // <Router>
+    //   <Route path ='/play' exact component={Summary} />
+    //   </Router>
+    // </>
+
+    <Router>
     <Header />
-    <QuestionBlock />
-    </>
+    {/* <QuestionBlock />
+    <Summary /> */}
+
+    <Route exact path='/' component={QuestionBlock} />
+          <Route path='/summary' component={Summary} />
+
+          </Router>
+
     // <>
     //   <h1>SongBird</h1>
     //   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
