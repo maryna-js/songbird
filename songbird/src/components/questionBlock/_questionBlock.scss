@@ -4,13 +4,19 @@
     margin: 10px auto;
     display: flex;
     justify-content: space-between;
+    height: 300px;
+    padding: 35px;
     &__container {
         max-width: 1200px;
         margin: 0px auto;
         justify-content: space-between;
     }
     &__img {
-        width: 300px;
+        height: 200px;
+    }
+    &__audio {
+        width: 75%;
+
     }
 }
 
@@ -23,7 +29,7 @@
 
 .rhap_container {
     position: relative;
-    margin: 100px 20px;
+    margin: 50px 0px;
     height: 105px;
 }
 
@@ -76,3 +82,64 @@
     justify-content: space-between;
 }
 
+.button__container {
+    text-align: center;
+    margin: 20px;
+    &-previous {
+        width: 150px;
+    }
+    &-next {
+        width: 150px;
+        margin-left: 10px;
+    }
+}
+
+// #toast-container {
+//     top: auto !important;
+//     right: auto !important;
+//     bottom: 10%;
+//     left:7%;  
+// }
+
+.toast {
+    position: absolute;
+    top: auto !important;
+    right: auto !important;
+    bottom: 33%;
+    left:35%;  
+}
+
+@media (max-width: 1050px) {
+    .main__container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .options {
+        &__container {
+            width: 98%;
+            margin: 10px;
+            height: 300px;
+        }
+    }
+
+    .description__container {
+        width: 98%;
+        margin: 10px;
+        height: 300px;
+    }
+
+    .toast {
+        bottom: 30%;
+        left:75%;  
+    }
+
+    }
+
+    @media (max-width: 500px) {
+        .toast {
+            bottom: 90%;
+            left:65%;  
+        }
+    }

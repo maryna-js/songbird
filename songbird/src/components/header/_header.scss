@@ -7,13 +7,30 @@
         display: flex;
         font-size: 20px;
         font-weight: 700;
-        line-height: 80px;
+        line-height: 60px;
+        margin-right: 30px;
+    }
+    &__logo {
+        margin-left: 30px;
+        width: 120px;
+        height: 60px;
+    }
+    &__nav {
+        max-width: 1200px;
+        margin: 10px auto;
+        display: flex; 
+
+    }
+    &__menu {
+        border-radius: 0;
+        width: 17%;
     }
 }
 
 .nav {
     max-width: 1200px;
     margin: 0 auto;
+    height: 40px;
     &__menu {
         display: flex;
         justify-content: space-between;
@@ -23,3 +40,15 @@
         margin-right: 55px;
     }
 }
+
+@media (max-width: 1050px) {
+    .header {
+        &__nav { 
+            flex-wrap: wrap;
+        }
+        &__menu {
+            border-radius: 0;
+            width: 33%;
+        }
+    }
+  }

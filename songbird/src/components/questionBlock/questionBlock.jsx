@@ -26,7 +26,7 @@ class QuestionBlock extends Component {
       currentQuestion: {},
       nextQuestion: {},
       previousQuestion: {},
-      answer: 'Журавль',
+      answer: '',
       numberOfQuestions: 0,
       numberOfAnsweredQuetions: 0,
       currentQuestionIndex: 0,
@@ -144,8 +144,8 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
   correctAnswer = () => {
       M.toast({
           html: 'Correct answer',
-          classes: 'alert alert-dismissible alert-success',
-          displayLength: 1500,
+          classes: 'alert alert-dismissible alert-success toast__modal',
+          //displayLength: 1500,
       });
       this.setState(prevState => ({
         score: prevState.score + 1,
@@ -171,15 +171,16 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
     });
     this.setState(prevState => ({
       wrongAnswers: prevState.wrongAnswers + 1,
-      currentQuestionIndex: prevState.currentQuestionIndex + 1,
+      currentQuestionIndex: prevState.currentQuestionIndex,
       numberOfAnsweredQuetions: prevState.numberOfAnsweredQuetions + 1
-    })
-    , () => {
+    }), 
+    () => {
         if (this.state.nextQuestion === undefined) {
             this.endGame();
-        } else {
-            this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
-        }
+        } 
+        // else {
+        //     this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
+        // }
         
       }
       );
@@ -202,7 +203,30 @@ endGame = () => {
 };
 
   render() {
-    const { currentQuestion, correctAnswers, numberOfQuestions } = this.state;
+    const { currentQuestion, correctAnswers, numberOfQuestions, answer } = this.state;
+    const {optionX} = currentQuestion;
+    let optionXx;
+    let birdProfile;
+    console.log(answer);
+    if(optionX !== undefined) {
+      
+      optionX.map((item) => {
+        optionXx = (
+       <>
+        <button onClick={this.handleOptionClick} className="option">
+        {item.name}
+      </button>
+       </>
+        );
+        birdProfile = (
+          <>
+          <p>{item.name}</p>
+          </>
+        );
+      })
+     
+    }
+    
     return (
       <>
         <div className="question__container">
@@ -217,12 +241,14 @@ endGame = () => {
             <audio id="correct-sound" src={correctNotification}></audio>
             <audio id="wrong-sound" src={wrongNotification}></audio>
             <audio id="button-sound" src={buttonSound}></audio>
+            <div className = "question__audio">
             <p>{currentQuestion.question}</p>
             <AudioPlayer
               autoPlay={false}
               src={currentQuestion.audio}
               onPlay={e => console.log('onPlay')}
             />
+            </div>
           </div>
           <div className="main__container">
             <div className="options__container card text-white bg-info mb-3">
@@ -234,9 +260,10 @@ endGame = () => {
                   </p>
                 </div>
               </div>
-              <button onClick={this.handleOptionClick} className="option">
+              {optionXx}
+              {/* <button onClick={this.handleOptionClick} className="option">
                 {currentQuestion.optionA}
-              </button>
+              </button> */}
               <button onClick={this.handleOptionClick} className="option">
                 {currentQuestion.optionB}
               </button>
@@ -244,23 +271,24 @@ endGame = () => {
                 {currentQuestion.optionC}
               </button>
               <button onClick={this.handleOptionClick} className="option">
-                Кукушка
+              {currentQuestion.optionD}
               </button>
               <button onClick={this.handleOptionClick} className="option">
-                Кукушка
+              {currentQuestion.optionE}
               </button>
               <button onClick={this.handleOptionClick} className="option">
-                Кукушка
+              {currentQuestion.optionF}
               </button>
             </div>
             <div className="description__container card border-info mb-3">
               <div className="card-header">Послушайте плеер.</div>
               Выберите птицу из списка
+              {birdProfile}
             </div>
           </div>
           <div className="button__container">
-            <button id="previous-button" className="btn btn-secondary" onClick={this.handleButtonClick}>Previous</button>
-            <button id="next-button" className="btn btn-success" onClick={this.handleButtonClick}>Next</button>
+            <button id="previous-button" className="btn btn-secondary button__container-previous" onClick={this.handleButtonClick}>Previous</button>
+            <button id="next-button" className="btn btn-success button__container-next" onClick={this.handleButtonClick}>Next</button>
           </div>
         </div>
       </>

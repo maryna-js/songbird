@@ -1,136 +1,85 @@
 [
   {
-      "question": "What temperature does water boil at?",
-      "optionA": "Журавль",
-      "optionB": "Ласточка",
-      "optionC": "Козодой",
-      "optionD": "Кукушка",
-      "answer": "журавль"
+      "group": "Перелетные",
+      "question": "Коршун",
+      "audio": "https://www.xeno-canto.org/sounds/uploaded/DXYUSANLSN/XC360637-elanus%20caeruleus%204%20espartinas%2014-03-2017.mp3",
+      "optionX": [{"name": "Кобчик", "3": "4"}],
+      "optionA": "Кобчик",
+      "optionB": "Кулик",
+      "optionC": "Осоед",
+      "optionD": "Коршун",
+      "optionE": "Ласточка",
+      "optionF": "Ибис",
+      "answer": "Коршун"
   },
 
   {
-      "question": "Who wrote Julius Caesar, Macbeth and Hamlet?",
-      "optionA": "Wole Soyinka",
-      "optionB": "William Shakespeare",
-      "optionC": "Ngozi Chimamanda Adichie",
-      "optionD": "Dan Brown",
-      "answer": "William Shakespeare"
+    "group": "Домашние",
+    "question": "Павлин",
+    "audio": "https://www.xeno-canto.org/sounds/uploaded/YTUXOCTUEM/XC409403-Polyplectron_chalcurum_nom-FL%20response%20TapanRd%20%207.11am%209Jul16%20LS110587a.mp3",
+    "optionX": [{"name": "Лебедь", "3": "4"}],
+    "optionA": "Лебедь",
+    "optionB": "Фазан",
+    "optionC": "Цесарка",
+    "optionD": "Перепел",
+    "optionE": "Павлин",
+    "optionF": "Утка",
+    "answer": "Павлин"
   },
 
   {
-      "question": "What did the crocodile swallow in Peter Pan?",
-      "optionA": "A Book",
-      "optionB": "A Computer",
-      "optionC": "A pair of shoes",
-      "optionD": "Alarm Clock",
-      "answer": "Alarm Clock"
+    "group": "Оседлые",
+    "question": "Кукушка",
+    "audio": "https://www.xeno-canto.org/sounds/uploaded/QFNPSPRHCC/XC506428-Saci.mp3",
+    "optionX": [{"name": "Гриф", "3": "4"}],
+    "optionA": "Гриф",
+    "optionB": "Канарейка",
+    "optionC": "Овсянка",
+    "optionD": "Кукушка",
+    "optionE": "Сокол",
+    "optionF": "Кедровка",
+    "answer": "Кукушка"
   },
 
   {
-      "question": "Which is the only mammal that can’t jump?",
-      "optionA": "Dog",
-      "optionB": "Elephant",
-      "optionC": "Goat",
-      "optionD": "Lion",
-      "answer": "Elephant"
+    "group": "Морские",
+    "question": "Фрегат",
+    "audio": "https://www.xeno-canto.org/sounds/uploaded/YHKQPPJDVP/XC411510-171217_1494%20MAFR%205ft%20juv%20IDLP%201430%20mp3%20amp.mp3",
+    "optionX": [{"name": "Гагарка", "3": "4"}],
+    "optionA": "Гагарка",
+    "optionB": "Глупыш",
+    "optionC": "Клуша",
+    "optionD": "Фрегат",
+    "optionE": "Олуша",
+    "optionF": "Тупик",
+    "answer": "Фрегат"
   },
 
   {
-      "question": "Who lived at 221B, Baker Street, London?",
-      "optionA": "Tony Stark",
-      "optionB": "Morgan Freeman",
-      "optionC": "Sherlock Holmes",
-      "optionD": "Samuel L. Jackson",
-      "answer": "Sherlock Holmes"
+    "group": "Хищные",
+    "question": "Беркут",
+    "audio": "https://www.xeno-canto.org/sounds/uploaded/QLZIXALYUM/XC504822-Aquila%20chrysaetos.mp3",
+    "optionX": [{"name": "Балабан", "3": "4"}],
+    "optionA": "Балабан",
+    "optionB": "Гарпия",
+    "optionC": "Змееяд",
+    "optionD": "Беркут",
+    "optionE": "Дербник",
+    "optionF": "Гриф",
+    "answer": "Беркут"
   },
 
   {
-      "question": "What colour is a panda?",
-      "optionA": "Green and Yellow",
-      "optionB": "Blue and Red",
-      "optionC": "Green and White",
-      "optionD": "Black and White",
-      "answer": "Black and White"
-  },
-
-  {
-      "question": "Where is the smallest bone in the human body?",
-      "optionA": "The Chest",
-      "optionB": "The Ear",
-      "optionC": "The Legs",
-      "optionD": "The Hands",
-      "answer": "The Ear"
-  },
-
-  {
-      "question": "What does the roman numeral C represent?",
-      "optionA": "100",
-      "optionB": "10",
-      "optionC": "10,000",
-      "optionD": "1,000,000",
-      "answer": "100"
-  },
-
-  {
-      "question": "What takes place in Hong Kong's Happy Valley?",
-      "optionA": "Chicken Wrestling",
-      "optionB": "Horse racing",
-      "optionC": "Street Racing",
-      "optionD": "Arm Wrestling",
-      "answer": "Horse racing"
-  },
-
-  {
-      "question": "Who painted the Mona Lisa?",
-      "optionA": "Alexander Graham Bell",
-      "optionB": "Sir Isaac Newton",
-      "optionC": "Leonardo Da Vinci",
-      "optionD": "Albert Einstein",
-      "answer": "Leonardo Da Vinci"
-  },
-
-  {
-      "question": "What’s the most important book in the Moslem religion?",
-      "optionA": "The Koran",
-      "optionB": "The Dictionary",
-      "optionC": "The Bible",
-      "optionD": "The Chemistry text Book",
-      "answer": "The Koran"
-  },
-
-  {
-      "question": "What’s the capital of Ethiopia?",
-      "optionA": "Cape Town",
-      "optionB": "San Francisco",
-      "optionC": "Abuja",
-      "optionD": "Syndey",
-      "answer": "Addis Ababa"
-  },
-
-  {
-      "question": "How many squares are there on a chess board?",
-      "optionA": "128",
-      "optionB": "64",
-      "optionC": "32",
-      "optionD": "256",
-      "answer": "64"
-  },
-
-  {
-      "question": "Who invented the electric light bulb?",
-      "optionA": "Tom Cruise",
-      "optionB": "Barack Obama",
-      "optionC": "Wole Soyinka",
-      "optionD": "Thomas Edison",
-      "answer": "Thomas Edison"
-  },
-
-  {
-      "question": "What are the first three words of the bible?",
-      "optionA": "be with everyone",
-      "optionB": "Again Jesus asked",
-      "optionC": "In the beginning",
-      "optionD": "At that time",
-      "answer": "In the beginning"
+    "group": "Певчие",
+    "question": "Дрозд",
+    "audio": "https://www.xeno-canto.org/sounds/uploaded/YTUXOCTUEM/XC271745-Morococcyx_erythropygus_%28mexicanus%29-FL%20song%20%28note%20missing%29%20Bah%C3%ADa%20la%20Ventosa%2C%20Salina%20Cruz%2023Mar15%205.17pm%20LS114629a.mp3",
+    "optionX": [{"name": "Жаворонок", "3": "4"}],
+    "optionA": "Жаворонок",
+    "optionB": "Жулан",
+    "optionC": "Иволга",
+    "optionD": "Клест",
+    "optionE": "Пересмешка",
+    "optionF": "Дрозд",
+    "answer": "Дрозд"
   }
 ]
