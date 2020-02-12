@@ -114,6 +114,20 @@
     justify-content: space-between;
 }
 
+.bird {
+    &__image {
+        width: 120px;
+        margin: 10px;
+    }
+    &__description {
+        display: flex;
+    }
+}
+
+.remove {
+    display:none;
+}
+
 @media (max-width: 1050px) {
     .main__container {
         display: flex;

@@ -86,7 +86,83 @@ class QuestionBlock extends Component {
   };
 
   handleOptionClick = e => {
-       console.log(this.state.answer);
+       const { optionX, optionB, optionC, optionD, optionE, optionF } = this.state.currentQuestion;
+       console.log(this.state.currentQuestion);
+       console.log(e.target.innerHTML);
+       var src = document.querySelector(".bird__description");
+       src.innerHTML = "";
+       document.querySelector('.bird__title').innerHTML = e.target.innerHTML;
+       var img = document.createElement("img");
+       img.classList.add("bird__image");
+       
+       var newDiv = document.createElement("div");
+      
+
+        optionX.map((item) => {
+          if (e.target.innerHTML === item.name) {
+          img.src = item.image;
+          src.appendChild(img);
+           newDiv.innerHTML = item.desc;
+           src.appendChild(newDiv);
+          }
+        });
+       
+        optionB.map((item) => {
+          if (e.target.innerHTML === item.name) {
+            img.src = item.image;
+          src.appendChild(img);
+           newDiv.innerHTML = item.desc;
+           src.appendChild(newDiv);
+            }
+        });
+
+        optionC.map((item) => {
+          if (e.target.innerHTML === item.name) {
+            img.src = item.image;
+          src.appendChild(img);
+           newDiv.innerHTML = item.desc;
+           src.appendChild(newDiv);
+            }
+        });
+
+        optionD.map((item) => {
+          if (e.target.innerHTML === item.name) {
+            img.src = item.image;
+          src.appendChild(img);
+           newDiv.innerHTML = item.desc;
+           src.appendChild(newDiv);
+            }
+        });
+
+        optionE.map((item) => {
+          if (e.target.innerHTML === item.name) {
+            img.src = item.image;
+          src.appendChild(img);
+           newDiv.innerHTML = item.desc;
+           src.appendChild(newDiv);
+            }
+        });
+
+        optionF.map((item) => {
+          if (e.target.innerHTML === item.name) {
+            img.src = item.image;
+          src.appendChild(img);
+           newDiv.innerHTML = item.desc;
+           src.appendChild(newDiv);
+            }
+        });
+       
+      
+      //  var src = document.querySelector(".bird__description");
+      //  src.innerHTML = "";
+      //  document.querySelector('.bird__title').innerHTML = e.target.innerHTML;
+      //  var img = document.createElement("img");
+      //  img.classList.add("bird__image");
+      //  img.src = "https://o-prirode.ru/wp-content/uploads/2017/08/korshun-696x522.jpg";
+      //  src.appendChild(img);
+      //  var newDiv = document.createElement("div");
+      //   newDiv.innerHTML = "Описание птички";
+      //   src.appendChild(newDiv);
 if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
     setTimeout(() => {
         document.getElementById('correct-sound').play();
@@ -110,6 +186,8 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
         }), () => {
           document.querySelector('.question__answer').innerHTML = '*******';
           document.querySelector('.question__img').src = bird;
+          document.querySelector('.bird__title').innerHTML = "Послушайте плеер.";
+          document.querySelector('.bird__description').innerHTML = "Выберите птицу из списка";
             this.displayQuestions(this.state.state, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
         });
       }
@@ -143,11 +221,6 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
   playButtonSound = () => {
     document.getElementById('button-sound').play();
   };
-
-  stopButtonSound = () => {
-    document.getElementById('button-sound').stop();
-  };
-  // add styles for M, working but white
 
   correctAnswer = () => {
       M.toast({
@@ -225,8 +298,13 @@ endGame = () => {
 
   render() {
     const { currentQuestion, correctAnswers, numberOfQuestions, answer, wrongAnswers } = this.state;
-    const {optionX} = currentQuestion;
+    const {optionX, optionB, optionC, optionD, optionE, optionF} = currentQuestion;
     let optionXx;
+    let optionBb;
+    let optionCc;
+    let optionDd;
+    let optionEe;
+    let optionFf;
     let birdProfile;
     let props = {
       correct: correctAnswers,
@@ -249,6 +327,69 @@ endGame = () => {
         );
       })
      
+    }
+
+    if (optionB !== undefined) {
+      optionB.map((item) => {
+        optionBb = (
+       <>
+        <button onClick={this.handleOptionClick} className="option">
+        {item.name}
+      </button>
+       </>
+        );
+      });
+    }
+
+    if(optionC !== undefined) {
+      
+      optionC.map((item) => {
+        optionCc = (
+       <>
+        <button onClick={this.handleOptionClick} className="option">
+        {item.name}
+      </button>
+       </>
+        );
+
+      });
+     
+    }
+
+    if (optionD !== undefined) {
+      optionD.map((item) => {
+        optionDd = (
+       <>
+        <button onClick={this.handleOptionClick} className="option">
+        {item.name}
+      </button>
+       </>
+        );
+      });
+    }
+
+    if (optionE !== undefined) {
+      optionE.map((item) => {
+        optionEe = (
+       <>
+        <button onClick={this.handleOptionClick} className="option">
+        {item.name}
+      </button>
+       </>
+        );
+      });
+    }
+
+    if (optionF !== undefined) {
+      optionF.map((item) => {
+        optionFf = (
+       <>
+        <button onClick={this.handleOptionClick} className="option">
+        {item.name}
+      </button>
+       </>
+        );
+      });
     }
     
     return (
@@ -287,16 +428,21 @@ endGame = () => {
                 </div>
               </div>
               {optionXx}
+              {optionBb}
+              {optionCc}
+              {optionDd}
+              {optionEe}
+              {optionFf}
               {/* <button onClick={this.handleOptionClick} className="option">
                 {currentQuestion.optionA}
               </button> */}
-              <button onClick={this.handleOptionClick} className="option">
+              {/* <button onClick={this.handleOptionClick} className="option">
                 {currentQuestion.optionB}
-              </button>
-              <button onClick={this.handleOptionClick} className="option">
+              </button> */}
+              {/* <button onClick={this.handleOptionClick} className="option">
                 {currentQuestion.optionC}
-              </button>
-              <button onClick={this.handleOptionClick} className="option">
+              </button> */}
+              {/* <button onClick={this.handleOptionClick} className="option">
               {currentQuestion.optionD}
               </button>
               <button onClick={this.handleOptionClick} className="option">
@@ -304,12 +450,15 @@ endGame = () => {
               </button>
               <button onClick={this.handleOptionClick} className="option">
               {currentQuestion.optionF}
-              </button>
+              </button> */}
             </div>
             <div className="description__container card border-info mb-3">
-              <div className="card-header">Послушайте плеер.</div>
-              Выберите птицу из списка
+              <div className="card-header bird__title">Послушайте плеер.</div>
+              <div className="bird__description">Выберите птицу из списка
+              <img src={bird} alt="Quess the bird" className="bird__img remove" />
+              <p className ="bird__descrip remove">Описание птицы</p>
               {birdProfile}
+              </div>
             </div>
           </div>
           <div className="button__container">
