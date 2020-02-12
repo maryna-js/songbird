@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 class Summary extends Component {
     constructor (props) {
         super(props);
@@ -14,24 +14,53 @@ class Summary extends Component {
 
     componentDidMount () {
         const { state } = this.props.location;
-        this.setState({
-            score: (state.score / state.numberOfQuestions) *100,
-            numberOfQuestions: state.numberOfQuestions,
-            numberOfAnsweredQuetions: state.numberOfAnsweredQuetions,
-            correctAnswers: state.correctAnswers,
-            wrongAnswers: state.wrongAnswers,
-        });
+        if (state !== undefined) {
+            this.setState({
+                score: (state.score / state.numberOfQuestions) *100,
+                numberOfQuestions: state.numberOfQuestions,
+                numberOfAnsweredQuetions: state.numberOfQuestions - (state.correctAnswers + state.wrongAnswers),
+                correctAnswers: state.correctAnswers,
+                wrongAnswers: state.wrongAnswers,
+            });
+        }
+        
     }
 
     render() {
         const { state, score } = this.props.location;
         let stats;
+        console.log(state);
         if (state !== undefined) {
             stats = (
-            <h2>Congratulations!</h2>
+               <>
+                <div className ="container">
+                <h2 className="summary__success">Поздравляем!</h2>
+                <div className = "jumbotron">
+            <h4 className=" summary__desc">Вы заработали: {this.state.score.toFixed(0)} &#37;</h4> 
+            <span className="stat left">Всего вопросов</span>
+            <span className="right">{this.state.numberOfQuestions}</span><br />
+            <span className="stat left">Количество правильных ответов</span>
+            <span className="right">{this.state.correctAnswers}</span><br />
+            <span className="stat left">Количество неправильных ответов</span>
+            <span className="right">{this.state.wrongAnswers}</span><br />
+                </div>
+                <section>
+                    <button type="button" className="btn btn-primary btn-lg btn-block"><Link to ="/">Играть еще раз</Link></button>
+                </section>
+                </div>
+               </> 
+               
+            
                 );
         } else {
-            stats = (<h1>No Stats available. Take a quiz</h1>);
+            stats = (
+            <>
+            <section>
+                <h1 className = "no-stats">No Stats available. Take a quiz</h1>
+                    <button><Link to ="/">Играть</Link></button>
+            </section>
+            </>
+            );
         }
         return (
             <>
