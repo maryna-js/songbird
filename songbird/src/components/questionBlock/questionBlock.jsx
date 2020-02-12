@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Header from '../header/header';
 import AudioPlayer from 'react-h5-audio-player';
 import bird from './images/bird-guess.jpg';
 import questions from '../../data/quiz.json';
@@ -145,7 +146,7 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
       M.toast({
           html: 'Correct answer',
           classes: 'alert alert-dismissible alert-success toast__modal',
-          //displayLength: 1500,
+          displayLength: 1000,
       });
       this.setState(prevState => ({
         score: prevState.score + 1,
@@ -156,6 +157,15 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
         if (this.state.nextQuestion === undefined) {
             this.endGame();
         } else {
+            const { group } =  this.state.nextQuestion;
+            //console.log(this.state.nextQuestion.group);
+            document.querySelectorAll('.header__menu').forEach(item => {
+              item.classList.remove("disabled");
+              if (item.innerHTML === group) {
+                 
+                 item.classList.add("disabled");
+              }
+            });
             this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
         }
         
@@ -203,11 +213,14 @@ endGame = () => {
 };
 
   render() {
-    const { currentQuestion, correctAnswers, numberOfQuestions, answer } = this.state;
+    const { currentQuestion, correctAnswers, numberOfQuestions, answer, wrongAnswers } = this.state;
     const {optionX} = currentQuestion;
     let optionXx;
     let birdProfile;
-    console.log(answer);
+    let props = {
+      correct: correctAnswers,
+      wrong: wrongAnswers
+      };
     if(optionX !== undefined) {
       
       optionX.map((item) => {
@@ -229,6 +242,7 @@ endGame = () => {
     
     return (
       <>
+        <Header {...props} />
         <div className="question__container">
           <div className="question jumbotron">
             <img src={bird} alt="Quess the bird" className="question__img" />
@@ -306,3 +320,4 @@ export default QuestionBlock;
 //адаптивная верстка 1ч до 20.00
 //баги и eslint 2ч до 22.00
 //netlify 1ч до 23.00
+//Создание и использование собственного файла с данными: (+20)

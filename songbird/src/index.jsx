@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 
 import '@babel/polyfill';
-import Header from './components/header/header';
+// import Header from './components/header/header';
 import QuestionBlock from './components/questionBlock/questionBlock';
 import Summary from './components/summary/Summary.jsx';
 
@@ -26,7 +26,7 @@ function App() {
     // </>
 
     <Router>
-    <Header />
+    {/* <Header /> */}
     {/* <QuestionBlock />
     <Summary /> */}
 

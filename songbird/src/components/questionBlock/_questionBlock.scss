@@ -105,8 +105,13 @@
     position: absolute;
     top: auto !important;
     right: auto !important;
-    bottom: 33%;
-    left:35%;  
+    bottom: 35%;
+    left:27%;  
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 1050px) {

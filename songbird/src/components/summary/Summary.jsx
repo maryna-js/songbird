@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../header/header';
 class Summary extends Component {
     constructor (props) {
         super(props);
@@ -16,7 +17,7 @@ class Summary extends Component {
         const { state } = this.props.location;
         if (state !== undefined) {
             this.setState({
-                score: (state.score / state.numberOfQuestions) *100,
+                score: state.correctAnswers*5 - state.wrongAnswers,
                 numberOfQuestions: state.numberOfQuestions,
                 numberOfAnsweredQuetions: state.numberOfQuestions - (state.correctAnswers + state.wrongAnswers),
                 correctAnswers: state.correctAnswers,
@@ -36,7 +37,7 @@ class Summary extends Component {
                 <div className ="container">
                 <h2 className="summary__success">Поздравляем!</h2>
                 <div className = "jumbotron">
-            <h4 className=" summary__desc">Вы заработали: {this.state.score.toFixed(0)} &#37;</h4> 
+            <h4 className=" summary__desc">Вы набрали: {this.state.score} из 30</h4> 
             <span className="stat left">Всего вопросов</span>
             <span className="right">{this.state.numberOfQuestions}</span><br />
             <span className="stat left">Количество правильных ответов</span>
@@ -64,6 +65,7 @@ class Summary extends Component {
         }
         return (
             <>
+            <Header />
             {stats}
             </>
         );
