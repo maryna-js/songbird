@@ -105,8 +105,11 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
       this.playButtonSound();
       if (this.state.nextQuestion !== undefined) {
         this.setState(prevState => ({
-            currentQuestionIndex: prevState.currentQuestionIndex + 1
+            currentQuestionIndex: prevState.currentQuestionIndex
+            
         }), () => {
+          document.querySelector('.question__answer').innerHTML = '*******';
+          document.querySelector('.question__img').src = bird;
             this.displayQuestions(this.state.state, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
         });
       }
@@ -140,6 +143,10 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
   playButtonSound = () => {
     document.getElementById('button-sound').play();
   };
+
+  stopButtonSound = () => {
+    document.getElementById('button-sound').stop();
+  };
   // add styles for M, working but white
 
   correctAnswer = () => {
@@ -155,10 +162,12 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
         numberOfAnsweredQuetions: prevState.numberOfAnsweredQuetions +1
       }), () => {
         if (this.state.nextQuestion === undefined) {
+            document.querySelector('.question__answer').innerHTML = this.state.currentQuestion.answer;
+            document.querySelector('.question__img').src = this.state.currentQuestion.image;
             this.endGame();
         } else {
             const { group } =  this.state.nextQuestion;
-            //console.log(this.state.nextQuestion.group);
+            console.log(this.state.currentQuestion.answer);
             document.querySelectorAll('.header__menu').forEach(item => {
               item.classList.remove("disabled");
               if (item.innerHTML === group) {
@@ -166,7 +175,10 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
                  item.classList.add("disabled");
               }
             });
-            this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
+            document.querySelector('.question__answer').innerHTML = this.state.currentQuestion.answer;
+            document.querySelector('.question__img').src = this.state.currentQuestion.image;
+            //this.stopButtonSound();
+             //this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion);
         }
         
       });
@@ -197,7 +209,6 @@ if (e.target.innerHTML.toLowerCase() === this.state.answer.toLowerCase()) {
 }
 
 endGame = () => {
-    alert('Игра окончена');
     const { state } = this;
     const playerStats = {
         score: state.score,
@@ -256,7 +267,8 @@ endGame = () => {
             <audio id="wrong-sound" src={wrongNotification}></audio>
             <audio id="button-sound" src={buttonSound}></audio>
             <div className = "question__audio">
-            <p>{currentQuestion.question}</p>
+            {/* <p>{currentQuestion.question}</p> */}
+            <p className = "question__answer">*******</p>
             <AudioPlayer
               autoPlay={false}
               src={currentQuestion.audio}
@@ -321,3 +333,4 @@ export default QuestionBlock;
 //баги и eslint 2ч до 22.00
 //netlify 1ч до 23.00
 //Создание и использование собственного файла с данными: (+20)
+//остановить проигрывание после правильного ответа??
