@@ -1,0 +1,19 @@
+.container {
+    max-width: 1200px;
+    margin: 10px auto;
+    
+}
+
+.summary {
+    &__success{
+        color: #34d034;
+        text-align: center;
+    }
+    &__desc {
+        text-align: center;
+    }
+}    
+
+.right {
+    float: right;
+}
